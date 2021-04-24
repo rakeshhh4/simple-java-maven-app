@@ -56,5 +56,14 @@ pipeline {
                 }
             }
         }
+        stage('deploying to UAT') {
+            environment {
+              target_user="ec2-user"
+              target_server="172.31.39.165"
+            }
+            steps {
+              echo "Awaiting"
+            }
+        }
     }        
 }

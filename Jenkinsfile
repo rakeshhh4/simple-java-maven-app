@@ -30,19 +30,7 @@ pipeline {
         }
         stage('deploy') {
             parallel {
-                stage('target1'){
-                    environment {
-                        target_user="ec2-user"
-                        target_server="172.31.41.155"
-                    }
-                    steps {
-                        echo "Deploying to Dev Environment"
-                        sshagent(['targets']) {
-                          sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
-                        }
-                    }
-                }
-                stage('target2') {
+                stage('target1') {
                   environment {
                     target_user="ec2-user"
                     target_server="172.31.21.224"

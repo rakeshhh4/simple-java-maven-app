@@ -45,6 +45,9 @@ pipeline {
             }
         }
         stage('deploying to UAT') {
+            input {
+                message 'do u want me deploy to UAT
+            }
             environment {
               target_user="ec2-user"
               target_server="172.31.39.165"

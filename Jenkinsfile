@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout scm
+              checkout scm
             }
         }
         stage('build') {
@@ -37,10 +37,21 @@ pipeline {
                     }
                     steps {
                         echo "Deploying to Dev Environment"
-                        sshagent(['ram']) {
+                        sshagent(['targets']) {
                           sh "scp target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
                         }
                     }
+                }
+                stage('target2') {
+                  environment {
+                    target_user="ec2-user"
+                    target_server="172.31.21.224"
+                  }
+                  steps {
+                    echo "Deploying to Dev Environment"
+                    sshagent(['targets']) {
+                    sh "scp target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                  }
                 }
             }
         }

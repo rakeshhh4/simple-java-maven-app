@@ -38,7 +38,7 @@ pipeline {
                     steps {
                         echo "Deploying to Dev Environment"
                         sshagent(['targets']) {
-                          sh "scp target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                          sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
                         }
                     }
                 }
@@ -50,7 +50,7 @@ pipeline {
                   steps {
                     echo "Deploying to Dev Environment"
                     sshagent(['targets']) {
-                    sh "scp target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                    sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
                     }
                   }
                 }

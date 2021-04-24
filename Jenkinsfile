@@ -19,7 +19,7 @@ pipeline {
         }
         stage('build') {
           steps {
-            sh "mvn clean install -DskipTests"
+            sh "mvn clean -DskipTests"
           }            
         }
         stage('test') {
@@ -46,7 +46,7 @@ pipeline {
         }
         stage('deploying to UAT') {
             input {
-                message 'do u want me deploy to UAT
+                message 'do u want me deploy to UAT'
             }
             environment {
               target_user="ec2-user"

@@ -51,6 +51,7 @@ pipeline {
                     echo "Deploying to Dev Environment"
                     sshagent(['targets']) {
                     sh "scp target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                    }
                   }
                 }
             }
